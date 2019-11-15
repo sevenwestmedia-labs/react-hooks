@@ -1,0 +1,8 @@
+{
+    "references": [
+        {
+            "path": "./packages/use-script"
+        }
+    ],
+    "files": []
+}

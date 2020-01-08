@@ -10,8 +10,10 @@ export const setTestLoadMode = (load: () => Promise<void>) => {
     }
 }
 
-export function loadScript(props: ScriptProps): Promise<ScriptLoadResult> {
-    const { src, ...attr } = props
+export function loadScript({
+    src,
+    ...attr
+}: ScriptProps): Promise<ScriptLoadResult> {
     if (process.env.NODE_ENV !== 'production' && testLoadFn) {
         const script = document.createElement('script')
         script.src = src

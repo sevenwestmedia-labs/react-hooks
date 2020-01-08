@@ -5,7 +5,7 @@ import { PromiseCompletionSource } from 'promise-completion-source'
 import Adapter from 'enzyme-adapter-react-16'
 
 import { useScript, ScriptProps } from './use-script'
-import { setTestLoadMode, ErrorState, ScriptLoadResult } from './utils'
+import { setTestLoadMode, ErrorState, loadScript } from './utils'
 
 configure({ adapter: new Adapter() })
 
@@ -65,7 +65,7 @@ describe('Test this module', () => {
         const complete = new PromiseCompletionSource<void>()
         setTestLoadMode(() => complete.promise)
         const deps: ScriptProps[] = [
-            { src: '//cdn.bootcss.com/jquery/2.2.1/jquery.min.js' },
+            { src: '//cdn.bootcss.com/jquery/2.2.2/jquery.min.js' },
         ]
 
         let currentLoading1: boolean | undefined = undefined
@@ -105,5 +105,25 @@ describe('Test this module', () => {
         expect(currentError1).toBe(null)
         expect(currentLoading2).toBe(false)
         expect(currentError2).toBe(null)
+    })
+
+    it('Initial state is not loading when script already exists', async () => {
+        setTestLoadMode(() => Promise.resolve())
+        await loadScript({
+            src: '//cdn.bootcss.com/jquery/2.2.3/jquery.min.js',
+        })
+        const deps: ScriptProps[] = [
+            { src: '//cdn.bootcss.com/jquery/2.2.3/jquery.min.js' },
+        ]
+
+        let currentLoading: boolean | undefined = undefined
+        let currentError: ErrorEvent | null = null
+        renderTestComponent(deps, (loading, error) => {
+            currentLoading = loading
+            currentError = error
+        })
+
+        expect(currentLoading).toBe(false)
+        expect(currentError).toBe(null)
     })
 })

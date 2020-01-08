@@ -11,7 +11,22 @@ const pendingScripts: { [script: string]: Promise<ScriptLoadResult> } = {}
 
 export function useScript(...scripts: ScriptProps[]): [boolean, ErrorState] {
     const isMounted = useIsMounted()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(() => {
+        for (const script of scripts) {
+            // Found a pending script, set initial state to true
+            if (pendingScripts[script.src]) {
+                return true
+            }
+
+            // Script doesn't exist in dom, set initial state to true
+            if (!getScriptTag(script.src)) {
+                return true
+            }
+        }
+
+        return false
+    })
+
     const [error, setError] = useState<ErrorState>(null)
 
     useEffect(() => {

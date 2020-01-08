@@ -1,5 +1,11 @@
 # use-script
 
+## 1.0.1
+
+### Patch Changes
+
+- Fixed hook throwing during SSR
+
 ## 1.0.0
 
 ### Major Changes

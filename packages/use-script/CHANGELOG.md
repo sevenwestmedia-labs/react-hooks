@@ -1,5 +1,11 @@
 # use-script
 
+## 1.0.0
+
+### Major Changes
+
+- 127788c: Export setTestLoadMode and bump to v1
+
 ## 0.2.0
 
 ### Minor Changes

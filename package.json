@@ -7,7 +7,9 @@
         "packages/*"
     ],
     "scripts": {
-        "build": "yarn tsc -b",
+        "build:esm": "yarn tsc -b ./tsconfig.esm.json",
+        "build:cjs": "yarn tsc -b ./tsconfig.cjs.json",
+        "build": "yarn build:cjs && yarn build:esm",
         "test": "yarn jest",
         "lint": "eslint --ext .js,.ts .",
         "verify": "yarn build && yarn test && yarn lint",

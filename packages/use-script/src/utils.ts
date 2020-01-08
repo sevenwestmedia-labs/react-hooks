@@ -59,6 +59,10 @@ export function loadScript({
 }
 
 export function getScriptTag(script: string) {
+    if (typeof document === 'undefined') {
+        return
+    }
+
     return document.querySelector(
         `script[src='${script}']`,
     ) as HTMLScriptElement

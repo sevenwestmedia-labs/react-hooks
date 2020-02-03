@@ -10,7 +10,7 @@ There are a few hooks out there but they do not handle concurrency or rendering 
 import { useScript } from 'use-script'
 
 const MyComponent = () => {
-    const [loading, error] = useScript({
+    const { loading, error } = useScript({
         src: '//cdn.bootcss.com/jquery/2.2.1/jquery.min.js',
     })
 

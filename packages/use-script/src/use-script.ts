@@ -9,7 +9,9 @@ export interface ScriptProps {
 
 const pendingScripts: { [script: string]: Promise<ScriptLoadResult> } = {}
 
-export function useScript(...scripts: ScriptProps[]): [boolean, ErrorState] {
+export function useScript(
+    ...scripts: ScriptProps[]
+): { loading: boolean; error: ErrorState } {
     const isMounted = useIsMounted()
     const [loading, setLoading] = useState(() => {
         for (const script of scripts) {
@@ -49,7 +51,7 @@ export function useScript(...scripts: ScriptProps[]): [boolean, ErrorState] {
         loadScripts()
     }, [scripts, isMounted])
 
-    return [loading, error]
+    return { loading, error }
 }
 
 function loadNewScript(scriptProps: ScriptProps): Promise<ScriptLoadResult> {

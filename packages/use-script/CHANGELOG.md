@@ -1,5 +1,11 @@
 # use-script
 
+## 2.0.0
+
+### Major Changes
+
+- 880b2cc: Return an object instead of a tuple, what the first tuple item represents is not clear in the API
+
 ## 1.0.1
 
 ### Patch Changes

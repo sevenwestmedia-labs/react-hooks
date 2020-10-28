@@ -1,5 +1,11 @@
 # use-script
 
+## 3.0.0
+
+### Major Changes
+
+- 56b4594: Update tslib peerDependency
+
 ## 2.0.0
 
 ### Major Changes

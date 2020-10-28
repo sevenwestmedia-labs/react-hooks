@@ -13,7 +13,7 @@ function renderTestComponent(
     deps: ScriptProps[],
     rendered: (loading: boolean, error: ErrorState) => void,
 ) {
-    const TestComponent: React.FC<{}> = () => {
+    const TestComponent: React.FC = () => {
         const { loading, error } = useScript(...deps)
 
         rendered(loading, error)

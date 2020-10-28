@@ -1,5 +1,5 @@
 ---
-'use-script': patch
+'use-script': major
 ---
 
-Update dependencies
+Update tslib peerDependency
